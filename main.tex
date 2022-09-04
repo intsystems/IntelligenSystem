@@ -1,0 +1,140 @@
+\documentclass{mybook}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{color}
+\usepackage{bm}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{lastpage}
+ \usepackage{systeme}
+
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+
+\usepackage{geometry}
+\geometry{left=1.5cm}
+\geometry{right=1.5cm}
+\geometry{top=2.0cm}
+\geometry{bottom=3.0cm}
+\renewcommand{\baselinestretch}{1.0}
+
+%https://tex.stackexchange.com/questions/163451/total-number-of-citations
+\usepackage{totcount}
+\newtotcounter{citnum} %From the package documentation
+\def\oldbibitem{} \let\oldbibitem=\bibitem
+\def\bibitem{\stepcounter{citnum}\oldbibitem}
+
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{#1.~#2}%
+  \ifdim \wd\@tempboxa >\hsize
+    #1.~#2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+
+\reversemarginpar
+
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=ynt
+]{biblatex}
+\addbibresource{chapters/*/main.bib}
+
+\begin{document}
+% Титульный лист
+\input{title}
+
+\setcounter{page}{2}
+
+% Оглавление
+\newpage
+\tableofcontents
+    
+    % Example chapter
+    \clearpage
+    \chapter{Пример Отчета}
+    \input{chapters/example/main.tex}
+    
+    % Other chapters
+    \clearpage
+    \chapter{Continuous-Time Representation and Legendre Memory Units for BCI}
+    \input{chapters/varenik1/main}
+
+    \clearpage
+    \chapter{Rectangular flows}
+    \input{chapters/petr_mokrov_s1/main}
+    
+    \clearpage
+    \chapter{Forward and Backward Fourier transform and iPhone LiDAR imaging analysis}
+    \input{chapters/grigorev_s1/main}
+    
+    \clearpage
+    \chapter{Spectral analysis on meshes}
+    \input{chapters/grigorev_s2/main}
+    
+    \clearpage
+    \chapter{Tensor representation of the Brain Computer Interface}
+    \input{chapters/varenik2/main}
+    
+    \clearpage
+    \chapter{Fourier Neural Operator for Parametric Partial Differential Equations}
+    \input{chapters/severilov_s1/main}
+    
+    \clearpage
+    \chapter{Hamiltonian and Lagrangian Neural Networks}
+    \input{chapters/severilov_s2/main}
+
+    \clearpage
+    \chapter{Dataset Dynamics}
+    \input{chapters/petr_mokrov_s2/main}
+
+    \clearpage
+    \chapter{SDE for generative modeling}
+    \input{chapters/kolesov_s1/main}
+    
+    \clearpage
+    \chapter{Spherical harmonics for mechanical motion modelling}
+    \input{chapters/tikhonov_s1/main}
+    
+    \clearpage
+    \chapter{Modelling gravity with machine learning approaches}
+    \input{chapters/tikhonov_s2/main}
+    
+    \clearpage
+    \chapter{Geometric Algebra, exterior product and quaternions}
+    \input{chapters/panchenko_s1/main}
+    
+    \clearpage
+    \chapter{Conformal Geometric Algebra with Applications}
+    \input{chapters/panchenko_s2/main}
+    
+    \clearpage
+    \chapter{ Geometric manifolds, Levy-Chivita operator and the curvature of tensors}
+    \input{chapters/kolesov_s2/main}
+    
+    \clearpage
+    \chapter{High-order splines}
+    \input{chapters/grishanov_s1/main}
+
+
+    % Bibliography
+    \clearpage
+    \printbibliography
+\end{document}
+
